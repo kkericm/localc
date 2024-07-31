@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebLoc</title>
+    <link rel="stylesheet" href="./assets/css/home.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.6.2/proj4.js"></script>
+    <script src="https://unpkg.com/@turf/turf/turf.min.js"></script>
+</head>
+<body>
+    <!-- <a href="https://www.google.com.br/maps/@-2.249563899056287,-45.84924966578893,3042m">Ir para</a> -->
+    <div class="dialog-placement"></div>
+    <div class="points-container">
+        <header>
+            <span class="title">
+                <img src="./assets/img/location.svg">
+                Localc
+            </span>
+            <!-- <button><img src="./assets/img/menu.svg"></button> -->
+        </header>
+        <div class="point" id="1">
+            <span>Ponto 1</span>
+            <button onclick="delPoint(this)">Delete</button>
+            <input type="text" placeholder="Latitude" id="lat">
+            <input type="text" placeholder="Longitude" id="lon">
+            <button onclick="pastePoint(this)">Paste</button>
+        </div>
+        <button class="bt add-point" onclick="addPoint()">Add Point</button>
+        <button class="bt generate" onclick="generate()">Generate</button>
+    </div>
+    <div class="table-container hidden">
+        <span class="nan-err">Preencha corretamente todos os campos disponíveis</span>
+        <table id="table4" class="hidden">
+            <tr class="head">
+                <th>Área</th>
+                <th>Perímetro</th>
+            </tr>
+            <tr>
+                <td onclick="copyCell(this)"></td>
+                <td onclick="copyCell(this)"></td>
+            </tr>
+        </table>
+        <table id="table5" class="hidden">
+            <tr class="head">
+                <th>Fuso UTM</th>
+                <th>Meridiano Central</th>
+            </tr>
+            <tr>
+                <td onclick="copyCell(this)"></td>
+                <td onclick="copyCell(this)"></td>
+            </tr>
+        </table>
+        <table id="table1" class="hidden">
+            <tr class="head">
+                <th>Vetor</th>
+                <th>Distância</th>
+                <th>Azimute</th>
+            </tr>
+        </table>
+        <button class="bt hidden b1" onclick="copyData()">Copy</button>
+        <table id="table2" class="hidden">
+            <tr class="head">
+                <th>Ponto</th>
+                <th>Latitude GD</th>
+                <th>Latitude GMS</th>
+                <th>Coord Y UTM em Metros</th>
+            </tr>
+        </table>
+        <table id="table3" class="hidden">
+            <tr class="head">
+                <th>Ponto</th>
+                <th>Longitude GD</th>
+                <th>Longitude GMS</th>
+                <th>Coord X UTM em Metros</th>
+            </tr>
+        </table>
+        <button class="bt hidden b23" onclick="copyTables()">Copy</button>
+    </div>
+    <script src="./assets/js/index.js"></script>
+    <!-- <div class="map hidden"></div> -->
+</body>
+</html>

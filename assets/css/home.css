@@ -1,0 +1,220 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+body {
+    margin: 1em;
+
+    display: grid;
+    justify-items: center;
+    row-gap: .5em;
+}
+
+:root {
+    font-family: 'Lato';
+    --point-color: #74debb;
+    --point-color-e1: #68c7a7;
+    --background-color: #84ffd6;
+}
+
+.points-container {
+    display: grid;
+    /* height: 100%; */
+    width: 470px;
+    row-gap: .75em;
+    background-color: var(--background-color);
+    align-items: center;
+    padding: .75em;
+
+    border-radius: .4rem;
+}
+
+.point {
+    display: grid;
+    border-radius: .3em;
+    width: calc(100% - 1em);
+
+    grid-template-columns: 2fr 2fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: 'title title';
+
+    column-gap: .5em;
+    row-gap: .3em;
+
+    background-color: var(--point-color);
+    padding: .5em;
+
+    & span {
+        display: flex;
+        grid-area: title;
+        width: 100%;
+        margin-top: .2em;
+        margin-left: .5em;
+    }
+
+    & input {
+        width: 11em;
+        font-family: 'Lato';
+        border-radius: 2em;
+        border: 0;
+        padding: .5em 1em;
+        outline-color: transparent;
+        transition: outline-color 200ms, background-color 200ms;
+    }
+    & input:hover {
+        background-color: rgb(208, 208, 208);
+        outline: rgba(0, 0, 0, 0.3) solid .15em;
+    }
+    & input:focus {
+        outline: rgba(0, 0, 0, 0.3) solid .15em;
+    }
+    & button {
+        cursor: pointer;
+        font-family: 'Lato';
+        border: 0;
+        border-radius: 2em;
+        padding: .5em 1em;
+        outline-color: transparent;
+        /* transition: outline-color 200ms; */
+        transition: outline-color 200ms, background-color 200ms, font-weight 200ms;
+    }
+    & button:hover {
+        /* font-weight: 900; */
+        background-color: rgb(208, 208, 208);
+        outline: rgba(0, 0, 0, 0.3) solid .15em;
+    }
+}
+
+.bt {
+    cursor: pointer;
+    font-family: 'Lato';
+    background-color: var(--point-color);
+    width: 100%;
+    border: 0;
+    border-radius: 2em;
+    padding: .5em 1em;
+    outline-color: transparent;
+    transition: outline-color 200ms, background-color 200ms, font-weight 200ms;
+}
+& .bt:hover {
+    /* font-weight: 900; */
+    background-color: var(--point-color-e1);
+    outline: rgba(0, 0, 0, 0.3) solid .15em;
+}
+
+
+.table-container {
+    background-color: var(--background-color);
+    padding: .75em;
+    border-radius: .4rem;
+    display: grid;
+    row-gap: .5em;
+}
+.table-container table {
+    border-collapse: collapse;
+    width: 550px;
+
+    & th {
+        background-color: var(--point-color);
+        width: 4em;
+        border: .1em solid var(--point-color);
+        padding: .2em .5em;
+        width: fit-content;
+    }
+    & td {
+        border: .1em solid var(--point-color);
+        text-align: center;
+        position: relative;
+        padding: .2em;
+    }
+    & td:hover {
+        background-color: rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        color: transparent;
+    }
+    & td:not(.go-to-point)::after {
+        content: 'Copy';
+        position: absolute;
+        left: calc(50% - 20px);
+        color: transparent;
+
+        transition: color 200ms;
+    }
+    & td:not(.go-to-point):hover::after {
+        color: black;
+    }
+    & .go-to-point > a {
+        text-decoration: none;
+        color: unset;
+    }
+    & .go-to-point::after {
+        content: 'Go to';
+        position: absolute;
+        left: calc(50% - 20px);
+        color: transparent;
+
+        transition: color 200ms;
+    }
+    & .go-to-point:hover::after {
+        color: black;
+    }
+}
+
+.hidden {
+    position: fixed;
+    visibility: hidden;
+}
+
+.map {
+    border-radius: .4rem;
+    background-color: var(--background-color);
+    width: 470px;
+    height: 300px;
+    padding: .75em;
+    
+    & iframe {
+        border-radius: .4rem;
+    }
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    & button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        background-color: transparent;
+        border-radius: 2em;
+        border: none;
+
+        height: 2em;
+        width: 2em;
+
+        transition: background-color 200ms;
+
+        & img {
+            filter: invert();
+            width: calc(100% + .3em);
+            height: calc(100% + .3em);
+        }
+    }
+    & button:hover {
+        background-color: rgba(0, 0, 0, 0.1);
+    }
+}
+
+header > .title {
+    display: flex;
+    font-weight: 900;
+    font-size: 1.1em;
+    align-items: end;
+
+    pointer-events: none;
+    user-select: none;
+
+    & img {
+        filter: invert();
+    }
+}
