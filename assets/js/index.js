@@ -172,6 +172,8 @@ function generate() {
     // console.log(hvsDist([-14.343403713165147, -48.69713650103194], [-14.363245867509091, -48.697371021733744]))
 
     var perimeter = 0
+    var distances = []
+    var azis = []
 
     var coords = []
     var coordtoa = []
@@ -205,6 +207,7 @@ function generate() {
     const tab5 = document.querySelector('#table5 tbody')
     const copybt23 = document.querySelector('.table-container .bt.b23')
     const copybt1 = document.querySelector('.table-container .bt.b1')
+    const desc = document.querySelector('.table-container .description')
     // const map = document.querySelector('.map')
 
     if (haveNaN) {
@@ -218,6 +221,7 @@ function generate() {
         tab5.parentElement.classList.add('hidden')
         copybt23.classList.add('hidden')
         copybt1.classList.add('hidden')
+        desc.classList.add('hidden')
         // map.classList.add('hidden')
         return
     } else {
@@ -245,7 +249,9 @@ function generate() {
             var vet = `P${fp+1} - P${sp+1}`;            
             var distance = hvsDist(d[0], d[1]);
             var azimute = calcAz(d[0], d[1]);
+            azis.push(azimute)
             perimeter += distance
+            distances.push(distance)
 
             row.insertAdjacentHTML('beforeend', `<td onclick="copyCell(this)">${vet}</td>`);
             row.insertAdjacentHTML('beforeend', `<td onclick="copyCell(this)">${distance.toFixed(2)}m</td>`);
@@ -258,13 +264,21 @@ function generate() {
     }
 
     if (coords.length > 2) {
-        console.log(coordtoa)
         const polygon = turf.polygon([coordtoa]);
         const area = turf.area(polygon);
 
         tab4.querySelectorAll("td").item(0).textContent = `${area.toFixed(2)}m²`
         tab4.querySelectorAll("td").item(1).textContent = `${perimeter.toFixed(2)}m`
         tab4.parentElement.classList.remove('hidden')
+
+        var desct = `<strong>LIMITES e CONFRONTANTES</strong>: Inicia-se a descrição deste perímetro no `
+        for (let i = 0; i < coords.length; i++) {
+            desct += `ponto <strong>P${i + 1}</strong>, de coordenadas <strong>E ${coords[i].utm[0]}m</strong> e <strong>S ${coords[i].utm[1]}m</strong>; deste segue confrontando com <strong>PROPRIEDADE DE TERCEIROS</strong>, com azimute de <strong>${azis[i]}</strong> por uma distância de <strong>${distances[i].toFixed(2)}m</strong>, até o`
+        }
+        desct += ` <strong>P1</strong>, onde teve início essa descrição.`
+        desc.innerHTML = desct;
+        
+        desc.classList.remove('hidden');
     }
 
     tab2.parentElement.classList.remove('hidden')
@@ -299,9 +313,13 @@ function generate() {
     // map.innerHTML = `<iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d1821.7370428013062!2d${coords[0].gd[1]}!3d${coords[0].gd[0]}!3m2!1i1024!2i768!4f13.1!5e1!3m2!1spt-BR!2sbr!4v1722370241544!5m2!1spt-BR!2sbr" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>`
     // map.classList.remove('hidden')
 
+    
+
+
     copybt23.classList.remove('hidden')
     document.querySelector('.table-container').classList.remove('hidden')
 }
+
 
 const dialogs = {
     about() {
