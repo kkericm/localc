@@ -273,9 +273,9 @@ function generate() {
 
         var desct = `<strong>LIMITES e CONFRONTANTES</strong>: Inicia-se a descrição deste perímetro no `
         for (let i = 0; i < coords.length; i++) {
-            desct += `ponto <strong>P${i + 1}</strong>, de coordenadas <strong>E ${coords[i].utm[0]}m</strong> e <strong>S ${coords[i].utm[1]}m</strong>; deste segue confrontando com <strong>PROPRIEDADE DE TERCEIROS</strong>, com azimute de <strong>${azis[i]}</strong> por uma distância de <strong>${distances[i].toFixed(2)}m</strong>, até o`
+            desct += `ponto <strong>P${i + 1}</strong>, de coordenadas <strong>E ${coords[i].utm[0]}m</strong> e <strong>S ${coords[i].utm[1]}m</strong>; deste segue confrontando com <strong>PROPRIEDADE DE TERCEIROS</strong>, com azimute de <strong>${azis[i]}</strong> por uma distância de <strong>${distances[i].toFixed(2)}m</strong>, até o `
         }
-        desct += ` <strong>P1</strong>, onde teve início essa descrição.`
+        desct += `<strong>P1</strong>, onde teve início essa descrição.`
         desc.innerHTML = desct;
         
         desc.classList.remove('hidden');

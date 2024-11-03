@@ -220,6 +220,12 @@ header > .title {
 }
 
 .description {
+    height: 1.25rem;
+    
+    overflow-x: hidden; /* Mudança para scroll horizontal */
+    overflow-y: hidden; /* Remover scroll vertical */
+    white-space: nowrap; /* Força o texto a ficar em uma única linha */
+    
     font-family: Arial, Helvetica, sans-serif;
     padding: 10px;
     text-align: justify;
